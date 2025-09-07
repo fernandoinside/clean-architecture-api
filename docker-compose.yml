@@ -1,0 +1,116 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: srmgestao-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: srmgestao
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./src/migrations:/docker-entrypoint-initdb.d
+    networks:
+      - srmgestao-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d srmgestao"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: srmgestao-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - srmgestao-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # pgAdmin (Optional - Database Management)
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: srmgestao-pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@srmgestao.com
+      PGADMIN_DEFAULT_PASSWORD: admin123
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "8080:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    networks:
+      - srmgestao-network
+    depends_on:
+      - postgres
+
+  # Redis Commander (Optional - Redis Management)
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: srmgestao-redis-commander
+    restart: unless-stopped
+    environment:
+      REDIS_HOSTS: local:redis:6379
+    ports:
+      - "8081:8081"
+    networks:
+      - srmgestao-network
+    depends_on:
+      - redis
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  pgadmin_data:
+    driver: local
+
+networks:
+  srmgestao-network:
+    driver: bridge
+
+# =============================================================================
+# INSTRUÇÕES DE USO
+# =============================================================================
+# 
+# 1. Iniciar todos os serviços:
+#    docker-compose up -d
+#
+# 2. Parar todos os serviços:
+#    docker-compose down
+#
+# 3. Ver logs de um serviço específico:
+#    docker-compose logs postgres
+#    docker-compose logs redis
+#
+# 4. Acessar os serviços:
+#    - PostgreSQL: localhost:5433
+#    - Redis: localhost:6379
+#    - pgAdmin: http://localhost:8080
+#    - Redis Commander: http://localhost:8081
+#
+# 5. Conectar ao banco via psql:
+#    psql -h localhost -p 5433 -U postgres -d srmgestao
+#
+# 6. Conectar ao Redis via CLI:
+#    redis-cli -h localhost -p 6379
+#
+# 7. Parar e remover volumes (CUIDADO: isso apaga todos os dados):
+#    docker-compose down -v
+#
+# =============================================================================

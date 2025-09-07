@@ -1,0 +1,644 @@
+{
+    "info": {
+      "_postman_id": "bb6c39f3-6001-471a-8846-d3b8319ab220",
+      "name": "SRM Gestão API",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Authentication",
+        "item": [
+          {
+            "name": "Register",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"username\": \"fernandoinside\",\n    \"name\": \"Fernando Machado\",\n    \"email\": \"fernando.inside@gmail.com\",\n    \"password\": \"Golf@2025\",\n    \"confirmPassword\": \"Golf@2025\"\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/auth/register",
+                "host": ["{{base_url}}"],
+                "path": ["auth", "register"]
+              }
+            }
+          },
+          {
+            "name": "Login",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"email\": \"admin@example.com\",\n  \"password\": \"password\"\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/auth/login",
+                "host": ["{{base_url}}"],
+                "path": ["auth", "login"]
+              }
+            }
+          },
+          {
+            "name": "Refresh Token",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"refreshToken\": \"{{refresh_token}}\"\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/auth/refresh-token",
+                "host": ["{{base_url}}"],
+                "path": ["auth", "refresh-token"]
+              }
+            }
+          },
+          {
+            "name": "Forgot Password",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"email\": \"user@example.com\"\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/auth/forgot-password",
+                "host": ["{{base_url}}"],
+                "path": ["auth", "forgot-password"]
+              }
+            }
+          },
+          {
+            "name": "Reset Password",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"token\": \"reset_token_here\",\n  \"password\": \"newPassword123\",\n  \"confirmPassword\": \"newPassword123\"\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/auth/reset-password",
+                "host": ["{{base_url}}"],
+                "path": ["auth", "reset-password"]
+              }
+            }
+          },
+          {
+            "name": "Verify Email",
+            "request": {
+              "method": "GET",
+              "header": [],
+              "url": {
+                "raw": "{{base_url}}/auth/verify-email/email_verification_token_here",
+                "host": ["{{base_url}}"],
+                "path": ["auth", "verify-email", "email_verification_token_here"]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "Users",
+        "item": [
+          {
+            "name": "Get Current User",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{auth_token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{base_url}}/users/me",
+                "host": ["{{base_url}}"],
+                "path": ["users", "me"]
+              }
+            }
+          },
+          {
+            "name": "Update Profile",
+            "request": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{auth_token}}"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Updated Name\",\n  \"email\": \"updated@example.com\",\n  \"phone\": \"11999999999\"\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/users/profile",
+                "host": ["{{base_url}}"],
+                "path": ["users", "profile"]
+              }
+            }
+          },
+          {
+            "name": "Change Password",
+            "request": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{auth_token}}"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"currentPassword\": \"currentPassword123\",\n  \"newPassword\": \"newPassword123\",\n  \"confirmNewPassword\": \"newPassword123\"\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/users/change-password",
+                "host": ["{{base_url}}"],
+                "path": ["users", "change-password"]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "Companies",
+        "item": [
+          {
+            "name": "List Companies",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{auth_token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{base_url}}/companies?page=1&limit=10",
+                "host": ["{{base_url}}"],
+                "path": ["companies"],
+                "query": [
+                  {
+                    "key": "page",
+                    "value": "1"
+                  },
+                  {
+                    "key": "limit",
+                    "value": "10"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "name": "Get Company by ID",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{auth_token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{base_url}}/companies/1",
+                "host": ["{{base_url}}"],
+                "path": ["companies", "1"]
+              }
+            }
+          },
+          {
+            "name": "Create Company",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{auth_token}}"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Empresa de Teste LTDA\",\n  \"email\": \"empresa.\" + Math.floor(Math.random() * 10000) + \"@example.com\",\n  \"document\": \"\" + Math.floor(10000000000000 + Math.random() * 90000000000000),\n  \"phone\": \"11\" + Math.floor(900000000 + Math.random() * 100000000),\n  \"website\": \"https://www.empresateste.com.br\",\n  \"industry\": \"Tecnologia\",\n  \"status\": \"active\"\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/companies",
+                "host": ["{{base_url}}"],
+                "path": ["companies"]
+              }
+            }
+          },
+          {
+            "name": "Update Company",
+            "request": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{auth_token}}"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Updated Company Name\",\n  \"phone\": \"11999999998\",\n  \"address\": {\n    \"street\": \"Rua Atualizada\",\n    \"number\": \"456\",\n    \"complement\": \"Sala 2\",\n    \"neighborhood\": \"Centro\",\n    \"city\": \"São Paulo\",\n    \"state\": \"SP\",\n    \"zipCode\": \"01001001\",\n    \"country\": \"Brasil\"\n  }\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/companies/1",
+                "host": ["{{base_url}}"],
+                "path": ["companies", "1"]
+              }
+            }
+          },
+          {
+            "name": "Delete Company",
+            "request": {
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{auth_token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{base_url}}/companies/1",
+                "host": ["{{base_url}}"],
+                "path": ["companies", "1"]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "Customers",
+        "item": [
+          {
+            "name": "List Customers",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{auth_token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{base_url}}/customers?page=1&limit=10",
+                "host": ["{{base_url}}"],
+                "path": ["customers"],
+                "query": [
+                  {
+                    "key": "page",
+                    "value": "1"
+                  },
+                  {
+                    "key": "limit",
+                    "value": "10"
+                  }
+                ]
+              }
+            }
+          },
+          {
+            "name": "Get Customer by ID",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{auth_token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{base_url}}/customers/1",
+                "host": ["{{base_url}}"],
+                "path": ["customers", "1"]
+              }
+            }
+          },
+          {
+            "name": "Create Customer",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{auth_token}}"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{auth_token}}"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"name\": \"Updated Customer Name\",\n  \"phone\": \"11999999998\",\n  \"address\": {\n    \"street\": \"Rua Atualizada\",\n    \"number\": \"456\",\n    \"complement\": \"Apto 102\",\n    \"neighborhood\": \"Centro\",\n    \"city\": \"São Paulo\",\n    \"state\": \"SP\",\n    \"zipCode\": \"01001001\",\n    \"country\": \"Brasil\"\n  }\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/customers/1",
+                "host": ["{{base_url}}"],
+                "path": ["customers", "1"]
+              }
+            }
+          },
+          {
+            "name": "Delete Customer",
+            "request": {
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{auth_token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{base_url}}/customers/1",
+                "host": ["{{base_url}}"],
+                "path": ["customers", "1"]
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "Customer Addresses",
+        "item": [
+          {
+            "name": "List Customer Addresses",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{auth_token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{base_url}}/customers/1/addresses",
+                "host": ["{{base_url}}"],
+                "path": ["customers", "1", "addresses"]
+              }
+            }
+          },
+          {
+            "name": "Get Customer Address",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{auth_token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{base_url}}/customers/1/addresses/1",
+                "host": ["{{base_url}}"],
+                "path": ["customers", "1", "addresses", "1"]
+              }
+            }
+          },
+          {
+            "name": "Create Customer Address",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{auth_token}}"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"type\": \"billing\",\n  \"street\": \"Rua Nova\",\n  \"number\": \"123\",\n  \"complement\": \"Sala 1\",\n  \"neighborhood\": \"Centro\",\n  \"city\": \"São Paulo\",\n  \"state\": \"SP\",\n  \"zipCode\": \"01001000\",\n  \"country\": \"Brasil\",\n  \"isDefault\": true,\n  \"metadata\": {}\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/customers/1/addresses",
+                "host": ["{{base_url}}"],
+                "path": ["customers", "1", "addresses"]
+              }
+            }
+          },
+          {
+            "name": "Update Customer Address",
+            "request": {
+              "method": "PUT",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{auth_token}}"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"type\": \"shipping\",\n  \"street\": \"Rua Atualizada\",\n  \"number\": \"456\",\n  \"complement\": \"Sala 2\",\n  \"neighborhood\": \"Centro\",\n  \"city\": \"São Paulo\",\n  \"state\": \"SP\",\n  \"zipCode\": \"01001001\",\n  \"country\": \"Brasil\",\n  \"isDefault\": false\n}",
+                "options": {
+                  "raw": {
+                    "language": "json"
+                  }
+                }
+              },
+              "url": {
+                "raw": "{{base_url}}/customers/1/addresses/1",
+                "host": ["{{base_url}}"],
+                "path": ["customers", "1", "addresses", "1"]
+              }
+            }
+          },
+          {
+            "name": "Delete Customer Address",
+            "request": {
+              "method": "DELETE",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {{auth_token}}"
+                }
+              ],
+              "url": {
+                "raw": "{{base_url}}/customers/1/addresses/1",
+                "host": ["{{base_url}}"],
+                "path": ["customers", "1", "addresses", "1"]
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "event": [
+      {
+        "listen": "prerequest",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "// Set environment variables if needed",
+            "if (!pm.environment.get('base_url')) {",
+            "    pm.environment.set('base_url', 'http://localhost:3000/api');",
+            "}"
+          ]
+        }
+      },
+      {
+        "listen": "test",
+        "script": {
+          "type": "text/javascript",
+          "exec": [
+            "// Save auth token from login response",
+            "if (pm.response.code === 200) {",
+            "    try {",
+            "        const jsonData = pm.response.json();",
+            "        if (jsonData && jsonData.token) {",
+            "            pm.collectionVariables.set('auth_token', jsonData.token);",
+            "            if (jsonData.refreshToken) {",
+            "                pm.collectionVariables.set('refresh_token', jsonData.refreshToken);",
+            "            }",
+            "        }",
+            "    } catch (e) {",
+            "        console.log('No JSON response or token not found');",
+            "    }",
+            "}",
+            "",
+            "// Log response for debugging",
+            "console.log(pm.response.code, pm.response.status);",
+            "console.log(pm.response.headers);"
+          ]
+        }
+      }
+    ],
+    "variable": [
+      {
+        "key": "base_url",
+        "value": "http://localhost:3000/api",
+        "type": "string"
+      },
+      {
+        "key": "auth_token",
+        "value": "",
+        "type": "string"
+      },
+      {
+        "key": "refresh_token",
+        "value": "",
+        "type": "string"
+      }
+    ]
+  }
