@@ -1,0 +1,96 @@
+{
+  "scales": {
+    "enabled": true,
+    "default_brand": "toledo",
+    "connection": {
+      "type": "serial",
+      "port": "COM1",
+      "baudrate": 9600,
+      "timeout": 5
+    },
+    "supported_brands": {
+      "toledo": {
+        "protocol": "toledo_protocol",
+        "weight_format": "decimal",
+        "commands": {
+          "read_weight": "05",
+          "tare": "T"
+        }
+      },
+      "filizola": {
+        "protocol": "filizola_protocol",
+        "weight_format": "decimal",
+        "commands": {
+          "read_weight": "W",
+          "tare": "T"
+        }
+      }
+    }
+  },
+  "printers": {
+    "enabled": true,
+    "thermal": {
+      "enabled": true,
+      "default_printer": "EPSON_TM_T20",
+      "connection": {
+        "type": "usb",
+        "vid": "0x04B8",
+        "pid": "0x0202"
+      },
+      "settings": {
+        "paper_width": 80,
+        "chars_per_line": 48,
+        "line_spacing": 24,
+        "cut_paper": true
+      }
+    },
+    "laser": {
+      "enabled": false,
+      "default_printer": "system_default"
+    }
+  },
+  "fiscal": {
+    "enabled": true,
+    "type": "sat_cfe",
+    "sat": {
+      "enabled": true,
+      "library_path": "sat_library.dll",
+      "config_file": "config/sat_config.ini",
+      "codigo_ativacao": "",
+      "cnpj_software_house": "",
+      "assinatura_aplicativo": ""
+    },
+    "nfce": {
+      "enabled": false,
+      "certificate_path": "",
+      "certificate_password": "",
+      "webservice_url": ""
+    }
+  },
+  "barcode_readers": {
+    "enabled": true,
+    "usb_hid": {
+      "enabled": true,
+      "vendor_ids": ["0x05E0", "0x0C2E"],
+      "product_ids": ["0x1200", "0x0200"]
+    },
+    "serial": {
+      "enabled": true,
+      "port": "COM2",
+      "baudrate": 9600,
+      "timeout": 1
+    },
+    "camera": {
+      "enabled": false,
+      "device_index": 0,
+      "resolution": [640, 480]
+    }
+  },
+  "cash_drawer": {
+    "enabled": true,
+    "connection": {
+      "type": "printer_port",
+      "open_command": "\\x1B\\x70\\x00\\x19\\xFA"
+    }
+  }
+}

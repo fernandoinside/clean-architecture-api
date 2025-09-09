@@ -1,0 +1,23 @@
+{
+  "base_url": "http://localhost:3000",
+  "timeout": 30,
+  "retry_attempts": 3,
+  "retry_delay": 1,
+  "endpoints": {
+    "auth": "/api/auth/login",
+    "products": "/api/products",
+    "customers": "/api/customers",
+    "sales": "/api/sales",
+    "cashier_sessions": "/api/cashier-sessions",
+    "companies": "/api/companies",
+    "warehouses": "/api/warehouses",
+    "users": "/api/users"
+  },
+  "headers": {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "User-Agent": "SRM-POS-Client/2.0"
+  },
+  "ssl_verify": true,
+  "sync_interval": 300
+}

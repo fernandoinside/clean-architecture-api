@@ -1,0 +1,36 @@
+{
+  "local_db": "data/pos_local.db",
+  "backup_interval": 3600,
+  "backup_retention_days": 30,
+  "auto_vacuum": true,
+  "cache_size": 10000,
+  "synchronous": "NORMAL",
+  "journal_mode": "WAL",
+  "foreign_keys": true,
+  "migrations": {
+    "enabled": true,
+    "directory": "src/core/database/migrations"
+  },
+  "tables": {
+    "products": {
+      "sync_enabled": true,
+      "cache_duration": 3600
+    },
+    "customers": {
+      "sync_enabled": true,
+      "cache_duration": 1800
+    },
+    "sales": {
+      "sync_enabled": true,
+      "offline_storage": true
+    },
+    "sale_items": {
+      "sync_enabled": true,
+      "offline_storage": true
+    },
+    "cashier_sessions": {
+      "sync_enabled": true,
+      "offline_storage": true
+    }
+  }
+}

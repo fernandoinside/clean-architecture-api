@@ -1,0 +1,39 @@
+# Core dependencies
+requests==2.31.0
+Pillow==10.3.0
+python-dateutil==2.8.2
+pydantic==2.5.3
+
+# Database - sqlite3 is included with Python
+
+# UI - tkinter is included with Python
+ttkthemes==3.2.2
+customtkinter==5.2.0
+
+# Equipment integration
+pyserial==3.5
+pyusb==1.2.1
+
+# Logging and monitoring
+structlog==23.2.0
+colorama==0.4.6
+
+# Configuration
+pyyaml==6.0.1
+python-dotenv==1.0.0
+
+# Testing
+pytest==7.4.3
+pytest-cov==4.1.0
+pytest-mock==3.12.0
+
+# Development
+black==23.12.1
+flake8==6.1.0
+mypy==1.8.0
+pre-commit==3.6.0
+
+# Utilities
+click==8.1.7
+rich==13.7.0
+watchdog==3.0.0

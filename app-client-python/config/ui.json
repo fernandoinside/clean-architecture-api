@@ -1,0 +1,106 @@
+{
+  "theme": {
+    "name": "modern_light",
+    "available_themes": [
+      "modern_light",
+      "modern_dark", 
+      "classic",
+      "high_contrast"
+    ],
+    "custom_colors": {
+      "primary": "#2563EB",
+      "secondary": "#64748B",
+      "success": "#10B981",
+      "warning": "#F59E0B",
+      "error": "#EF4444",
+      "background": "#FFFFFF",
+      "surface": "#F8FAFC",
+      "text_primary": "#1F2937",
+      "text_secondary": "#6B7280"
+    }
+  },
+  "window": {
+    "main": {
+      "title": "SRM Gestão - PDV",
+      "width": 1200,
+      "height": 800,
+      "min_width": 1024,
+      "min_height": 768,
+      "resizable": true,
+      "maximized": false,
+      "centered": true
+    },
+    "payment": {
+      "width": 500,
+      "height": 400,
+      "resizable": false,
+      "modal": true
+    },
+    "settings": {
+      "width": 700,
+      "height": 600,
+      "resizable": true,
+      "modal": true
+    }
+  },
+  "fonts": {
+    "default": {
+      "family": "Segoe UI",
+      "size": 10,
+      "weight": "normal"
+    },
+    "heading": {
+      "family": "Segoe UI",
+      "size": 14,
+      "weight": "bold"
+    },
+    "button": {
+      "family": "Segoe UI",
+      "size": 10,
+      "weight": "normal"
+    },
+    "product_list": {
+      "family": "Consolas",
+      "size": 9,
+      "weight": "normal"
+    }
+  },
+  "layout": {
+    "product_search": {
+      "position": "top",
+      "height": 100
+    },
+    "product_list": {
+      "position": "center",
+      "min_height": 300
+    },
+    "total_panel": {
+      "position": "right",
+      "width": 250
+    },
+    "status_bar": {
+      "position": "bottom",
+      "height": 30
+    }
+  },
+  "features": {
+    "show_product_images": true,
+    "show_customer_display": true,
+    "enable_touch_mode": false,
+    "show_tooltips": true,
+    "animate_transitions": true,
+    "show_splash_screen": true,
+    "enable_sound_effects": false
+  },
+  "keyboard_shortcuts": {
+    "new_sale": "F2",
+    "finish_sale": "F12",
+    "cancel_sale": "Escape",
+    "add_product": "F1",
+    "remove_item": "Delete",
+    "search_product": "F3",
+    "search_customer": "F4",
+    "open_cash_drawer": "F5",
+    "settings": "F10"
+  }
+}
